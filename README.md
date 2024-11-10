@@ -56,11 +56,17 @@ Conclusion
 QueueLet redefines queue management for individuals and businesses, creating a seamless, efficient experience across physical and digital queues. With applications in multiple industries and everyday settings, QueueLet has vast potential for adoption in event management, public services, delivery tracking, and beyond.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Frontend link:https://testversel-puce.vercel.app/
+<br>
 Members and Roles:
+<br>
 1.Deepanshu Gautam @MartiamMonk(Frontend and ML model)
+<br>
 2.Shubham kumar @shubham9345(Backend)
+<br>
 3.Yuvraj Singh @yuvi-000(UI/UX)
+<br>
 4.Aagman @Aagman2004(ML model)
+<br>
 5.Dhruv @dhruv-37(@Frontend)
 
 
