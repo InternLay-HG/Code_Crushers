@@ -1,10 +1,9 @@
 package com.QueLet.QueLet.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -22,13 +21,22 @@ public class Business implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long businessId;
+    @NonNull
     private String username;
     private String password;
     private String email;
-    private String typeOfBusiness;
+    private String description;
+    @Enumerated(EnumType.STRING)
+    private CategoryType typeOfBusiness;
     private String businessName;
     private Long gstNumber;
-    private List<String>timings;
+    private List<String> timings;
+    private String url;
+    @OneToMany(mappedBy = "business")
+    //@JsonBackReference
+    @JsonIgnore
+    private List<Appointment> appointments;
+    private int seatsAvailable;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -54,4 +62,8 @@ public class Business implements UserDetails {
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
     }
+    public Business(Long businessId) {
+        this.businessId=businessId;
+    }
+
 }

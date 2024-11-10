@@ -1,6 +1,7 @@
 package com.QueLet.QueLet.Service;
 
 import com.QueLet.QueLet.Model.Business;
+import com.QueLet.QueLet.Model.CategoryType;
 import com.QueLet.QueLet.Model.Customer;
 import com.QueLet.QueLet.Repository.BusinessRepository;
 import com.QueLet.QueLet.Repository.CustomerRepository;
@@ -33,6 +34,29 @@ public class BusinessService {
 
     public List<Business> AllBusiness() {
         return businessRepository.findAll();
+    }
+    public List<Business> getBusinessType(CategoryType categoryType){
+        List<Business> businessList = businessRepository.findByTypeOfBusiness(categoryType);
+        return businessList;
+    }
+
+    public Business UpdateBusiness(Long businessId, Business updatedbusiness) {
+        Optional<Business> existingBusiness= businessRepository.findById(businessId);
+
+        if (existingBusiness.isPresent()) {
+            Business modifyBusiness = existingBusiness.get();
+            modifyBusiness.setBusinessName(updatedbusiness.getBusinessName());
+            modifyBusiness.setTypeOfBusiness(updatedbusiness.getTypeOfBusiness());
+            modifyBusiness.setEmail(updatedbusiness.getEmail());
+            modifyBusiness.setPassword(updatedbusiness.getPassword());
+            modifyBusiness.setDescription(updatedbusiness.getDescription());
+            modifyBusiness.setTimings(updatedbusiness.getTimings());
+            modifyBusiness.setSeatsAvailable(updatedbusiness.getSeatsAvailable());
+
+            return businessRepository.save(modifyBusiness);
+        } else {
+            throw new RuntimeException("Business not found with ID: " + businessId);
+        }
     }
 }
 

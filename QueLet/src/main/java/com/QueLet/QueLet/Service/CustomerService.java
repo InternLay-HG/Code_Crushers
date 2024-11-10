@@ -19,7 +19,7 @@ public class CustomerService {
 
 
     public Customer save(Customer user) {
-        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+        if ( user.getPassword().isEmpty()) {
             throw new IllegalArgumentException("password cannot be null or empty");
         }
         Optional<Customer> existingUser = customerRepository.findByUsername(user.getUsername());
