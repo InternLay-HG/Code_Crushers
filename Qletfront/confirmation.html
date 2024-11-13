@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment page Under Work</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; 
+            height: 100vh; 
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px; 
+        }
+
+        #slotNumberDisplay,
+        #amountDisplay {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        #qrCode {
+            margin-top: 20px;
+        }
+
+        #paymentStatus {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment QR under work</h1>
+        <div id="slotNumberDisplay"></div>
+        <div id="amountDisplay"></div>
+        <div id="qrCode"></div>
+        <div id="paymentStatus"></div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Simulate fetching data from an API
+            const slotNumber = "ABC123"; r
+            const amount = 50; 
+
+            // Display the slot number and amount
+            $('#slotNumberDisplay').text(`Slot Number: ${slotNumber}`);
+            $('#amountDisplay').text(`Payment Amount: $${amount}`);
+
+            // Example API call to confirm payment (replace with your actual API)
+            $.ajax({
+                url: '/api/confirm-payment', // Your API endpoint
+                method: 'POST',
+                data: {
+                    slotNumber: slotNumber,
+                    amount: amount
+                },
+                success: function(response) {
+                    // Assuming the response contains a payment link or details
+                    const paymentLink = response.paymentLink; // Adjust based on your API response
+
+                    // Show payment success message
+                    $('#paymentStatus').text('Payment confirmed! Generating QR code...');
+
+                    // Generate QR Code
+                    $('#qrCode').qrcode({
+                        text: paymentLink, // The link to be encoded in the QR code
+                        width: 128,
+                        height: 128
+                    });
+                },
+                error: function(error) {
+                    console.error('Error confirming payment:', error);
+                    alert('Payment confirmation failed. Please try again.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

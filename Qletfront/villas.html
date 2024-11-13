@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Allopthaic.CSS">
+    <title>Villas</title>
+</head>
+<body>
+    <header>
+        <h1>Villas</h1>
+    </header>
+
+    <div class="container">
+        <form id="searchForm" method="POST" action="/search">
+            <input type="text" name="searchTerm" placeholder="Search..." required>
+            <input type="submit" value="Search">
+        </form>
+
+        <div id="recommendations">
+            <!-- Recommendations will be loaded here -->
+        </div>
+
+        <h2></h2>
+        <a href="hotelsconf.html" class="register-button">Register</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('/recommendations')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('recommendations').innerHTML = data; // Load recommendations
+                });
+
+            document.getElementById('searchForm').onsubmit = function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                const formData = new FormData(this); // Create FormData object
+
+                // Send data to the search servlet using fetch
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('recommendations').innerHTML = data; // Display search results
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            };
+        });
+    </script>
+
+    <style>
+        .register-button {
+            display: inline-block; 
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none; 
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px; 
+        }
+
+        .register-button:hover {
+            background-color: #0056b3; /
+        }
+    </style>
+</body>
+</html>

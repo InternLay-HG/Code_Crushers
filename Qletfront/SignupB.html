@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Sign Up</title>
+    <link rel="stylesheet" href="SignupB.CSS">
+</head>
+<body>
+    <div class="container">
+        <h2>Business Sign Up</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="businessType">Type of Business:</label>
+                <select id="businessType" required>
+                    <option value="">Select Business Type</option>
+                    <option value="medical">Medical</option>
+                    <option value="restaurant">Restaurant</option>
+                    <option value="hotel">Hotel</option>
+                </select>
+            </div>
+            <div id="subBusinessType" class="hidden">
+                <div class="form-group">
+                    <label for="subType">Sub-Type:</label>
+                    <select id="subType" required>
+                        <option value="">Select Sub-Type</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="businessName">Business Name:</label>
+                <input type="text" id="businessName" required>
+            </div>
+            <div class="form-group">
+                <label for="gst">GST Number:</label>
+                <input type="text" id="gst" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="timing">Operating Timings:</label>
+                <input type="text" id="timing" placeholder="e.g. 9 AM - 9 PM" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" required>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="signin.html">Sign In</a></p>
+    </div>
+    <script src="SignupB.js"></script>
+</body>
+</html>
